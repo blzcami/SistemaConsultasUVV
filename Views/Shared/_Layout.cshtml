@@ -1,0 +1,162 @@
+﻿
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - Consultas UVV</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SistemaConsultasUVV.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-uvv">
+            <div class="container">
+
+                <!-- LOGO -->
+                <a class="navbar-brand d-flex align-items-center gap-2"
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    <span class="logo-icon">✚</span>
+
+                    <span>
+                        <strong>Consultas UVV</strong>
+                        <small class="d-block">Sistema de Gestão</small>
+                    </span>
+
+                </a>
+
+                <!-- MENU MOBILE -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#menuPrincipal"
+                        aria-controls="menuPrincipal"
+                        aria-expanded="false"
+                        aria-label="Abrir menu">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+
+                    <!-- LINKS PRINCIPAIS -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Index">
+                                Início
+                            </a>
+                        </li>
+
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Consulta"
+                                   asp-action="Index">
+                                    Minhas consultas
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Consulta"
+                                   asp-action="Criar">
+                                    Nova consulta
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+
+
+                    <!-- ÁREA DO USUÁRIO -->
+                    <ul class="navbar-nav align-items-lg-center">
+
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <span class="usuario-logado">
+                                    Olá, @User.Identity.Name
+                                </span>
+                            </li>
+
+                            <li class="nav-item ms-lg-2">
+                                <a class="btn btn-light btn-sm px-3"
+                                   asp-controller="Usuario"
+                                   asp-action="Logout">
+                                    Sair
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Usuario"
+                                   asp-action="Cadastro">
+                                    Criar conta
+                                </a>
+                            </li>
+
+                            <li class="nav-item ms-lg-2">
+                                <a class="btn btn-light btn-sm px-3"
+                                   asp-controller="Usuario"
+                                   asp-action="Login">
+                                    Entrar
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- CONTEÚDO DAS PÁGINAS -->
+    <main>
+        @RenderBody()
+    </main>
+
+
+    <!-- RODAPÉ -->
+    <footer class="footer-uvv">
+        <div class="container text-center">
+
+            <strong>Consultas UVV</strong>
+
+            <span class="mx-2">•</span>
+
+            Sistema de Gestão de Consultas
+
+            <div class="mt-1">
+                &copy; 2026 Universidade Vila Velha
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
+```

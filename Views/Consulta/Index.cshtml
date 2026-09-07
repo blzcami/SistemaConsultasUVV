@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SistemaConsultasUVV.Models.Consulta>
+
+@{
+    ViewData["Title"] = "Minhas consultas";
+}
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+
+        <div>
+            <h1 class="titulo-consultas">
+                Minhas consultas
+            </h1>
+
+            <p class="subtitulo-consultas">
+                Consulte e gerencie seus atendimentos cadastrados.
+            </p>
+        </div>
+
+        <a asp-controller="Consulta"
+           asp-action="Criar"
+           class="btn btn-primary">
+            + Nova consulta
+        </a>
+
+    </div>
+
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="lista-consultas">
+
+            @foreach (var consulta in Model)
+            {
+                <div class="consulta-card">
+
+                    <div class="consulta-conteudo">
+
+                        <div class="consulta-data">
+                            @consulta.DataHora.ToString("dd/MM/yyyy")
+                            <span>
+                                @consulta.DataHora.ToString("HH:mm")
+                            </span>
+                        </div>
+
+                        <div class="consulta-informacoes">
+
+                            <h3>
+                                @consulta.Especialidade
+                            </h3>
+
+                            <p>
+                                @consulta.Descricao
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="consulta-acoes">
+
+                        <a asp-controller="Consulta"
+                           asp-action="Editar"
+                           asp-route-id="@consulta.Id"
+                           class="btn btn-outline-primary">
+                            Editar
+                        </a>
+
+                        <a asp-controller="Consulta"
+                           asp-action="Excluir"
+                           asp-route-id="@consulta.Id"
+                           class="btn btn-outline-danger">
+                            Excluir
+                        </a>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+    else
+    {
+        <div class="sem-consultas">
+
+            <div class="sem-consultas-icone">
+                📅
+            </div>
+
+            <h2>Nenhuma consulta cadastrada</h2>
+
+            <p>
+                Você ainda não possui consultas cadastradas.
+            </p>
+
+            <a asp-controller="Consulta"
+               asp-action="Criar"
+               class="btn btn-primary">
+                Cadastrar primeira consulta
+            </a>
+
+        </div>
+    }
+
+</div>

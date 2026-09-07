@@ -1,0 +1,148 @@
+﻿@{
+    ViewData["Title"] = "Início";
+}
+
+<section class="pagina-inicial">
+    <div class="container">
+
+        <div class="cabecalho-inicial">
+
+            <span class="etiqueta">
+                SISTEMA DE GESTÃO DE CONSULTAS
+            </span>
+
+            <h1>
+                Organize suas consultas
+                <span>de forma simples.</span>
+            </h1>
+
+            <p>
+                O Consultas UVV é um sistema desenvolvido para facilitar
+                o gerenciamento de consultas, permitindo cadastrar,
+                visualizar, editar e excluir seus atendimentos.
+            </p>
+
+            <div class="botoes-inicial">
+
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Consulta"
+                       asp-action="Index"
+                       class="btn-inicial btn-inicial-principal">
+                        Ver minhas consultas
+                    </a>
+
+                    <a asp-controller="Consulta"
+                       asp-action="Criar"
+                       class="btn-inicial btn-inicial-secundario">
+                        Nova consulta
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Usuario"
+                       asp-action="Cadastro"
+                       class="btn-inicial btn-inicial-principal">
+                        Criar minha conta
+                    </a>
+
+                    <a asp-controller="Usuario"
+                       asp-action="Login"
+                       class="btn-inicial btn-inicial-secundario">
+                        Entrar
+                    </a>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="funcionalidades">
+    <div class="container">
+
+        <div class="titulo-funcionalidades">
+            <h2>Funcionalidades</h2>
+
+            <p>
+                Recursos para facilitar o gerenciamento das suas consultas.
+            </p>
+        </div>
+
+        <div class="cards-funcionalidades">
+
+            <div class="card-funcionalidade">
+
+                <div class="icone-funcionalidade">
+                    +
+                </div>
+
+                <h3>Nova consulta</h3>
+
+                <p>
+                    Cadastre uma consulta informando a especialidade,
+                    data, horário e descrição.
+                </p>
+
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Consulta"
+                       asp-action="Criar">
+                        Cadastrar consulta
+                    </a>
+                }
+
+            </div>
+
+            <div class="card-funcionalidade">
+
+                <div class="icone-funcionalidade">
+                    ✓
+                </div>
+
+                <h3>Minhas consultas</h3>
+
+                <p>
+                    Visualize todas as consultas cadastradas
+                    na sua conta.
+                </p>
+
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Consulta"
+                       asp-action="Index">
+                        Ver consultas
+                    </a>
+                }
+
+            </div>
+
+            <div class="card-funcionalidade">
+
+                <div class="icone-funcionalidade">
+                    ✎
+                </div>
+
+                <h3>Gerenciamento</h3>
+
+                <p>
+                    Edite ou exclua suas consultas sempre que
+                    precisar atualizar as informações.
+                </p>
+
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Consulta"
+                       asp-action="Index">
+                        Gerenciar consultas
+                    </a>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

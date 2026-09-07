@@ -1,0 +1,47 @@
+﻿@model SistemaConsultasUVV.Models.Consulta
+
+@{
+    ViewData["Title"] = "Excluir Consulta";
+}
+
+<h1>Excluir Consulta</h1>
+
+<div class="alert alert-warning">
+    <strong>Atenção!</strong>
+    Tem certeza de que deseja excluir esta consulta?
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+
+        <h5 class="card-title">
+            @Model.Especialidade
+        </h5>
+
+        <p class="card-text">
+            <strong>Data e Hora:</strong>
+            @Model.DataHora.ToString("dd/MM/yyyy HH:mm")
+        </p>
+
+        <p class="card-text">
+            <strong>Descrição:</strong>
+            @Model.Descricao
+        </p>
+
+    </div>
+</div>
+
+<form asp-action="Excluir" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">
+        Sim, Excluir
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancelar
+    </a>
+
+</form>
